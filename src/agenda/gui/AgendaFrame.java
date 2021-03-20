@@ -45,7 +45,13 @@ public class AgendaFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		ListaEventosPanel listaEventosPanel = new ListaEventosPanel();
+		tabbedPane.addTab("Cadastro de Eventos", new CadastroEventoPanel());
+		tabbedPane.addTab("Lista de Eventos", listaEventosPanel);
+		
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
