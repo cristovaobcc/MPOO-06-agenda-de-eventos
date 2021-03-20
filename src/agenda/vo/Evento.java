@@ -1,6 +1,7 @@
 package agenda.vo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import agenda.utils.PeriodicidadeEnum;
@@ -110,6 +111,19 @@ public class Evento implements Serializable{
 	 */
 	public void setAlarme(int alarme) {
 		this.alarme = alarme;
+	}
+	
+	/**
+	 * Devolve uma string com os campos separados por ";".
+	 */
+	@Override
+	public String toString() {
+		SimpleDateFormat mascaraData = new SimpleDateFormat("dd/MM/yyyy");
+		return String.format("%s;%s;%s;%s;%s ", mascaraData.format(getDataEvento()), 
+										getDescEvento(),
+										getPeriodicidade(),
+										getEmailEncaminhar(),
+										getAlarme());
 	}
 	
 		
