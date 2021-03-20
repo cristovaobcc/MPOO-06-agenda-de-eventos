@@ -6,6 +6,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
 
 /**
  * Painel que recebe os dados de novo evento de calendário.
@@ -69,6 +71,18 @@ public class CadastroEventoPanel extends JPanel {
 		buttonGroupPeriodicidade.add(rdbMensal);
 		rdbMensal.setBounds(382, 125, 84, 23);
 		add(rdbMensal);
+		
+		JCheckBox ckbAlarme = new JCheckBox("Alarme");
+		ckbAlarme.setBounds(8, 163, 129, 23);
+		add(ckbAlarme);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(160, 162, 117, 25);
+		add(btnSalvar);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setBounds(318, 162, 117, 25);
+		add(btnLimpar);
 
 	}
 }
