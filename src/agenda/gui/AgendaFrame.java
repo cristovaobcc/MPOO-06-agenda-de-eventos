@@ -46,7 +46,7 @@ public class AgendaFrame extends JFrame {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		ListaEventosPanel listaEventosPanel = new ListaEventosPanel();
-		tabbedPane.addTab("Cadastro de Eventos", new CadastroEventoPanel());
+		tabbedPane.addTab("Cadastro de Eventos", new CadastroEventoPanel(listaEventosPanel));
 		tabbedPane.addTab("Lista de Eventos", listaEventosPanel);
 		
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
