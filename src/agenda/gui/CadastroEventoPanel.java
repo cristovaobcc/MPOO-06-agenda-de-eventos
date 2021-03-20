@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 /**
  * Painel que recebe os dados de novo evento de calendário.
@@ -13,6 +15,7 @@ public class CadastroEventoPanel extends JPanel {
 	private JTextField tfDescEvento;
 	private JTextField tfDataDoEvento;
 	private JTextField tfEncaminharEmail;
+	private final ButtonGroup buttonGroupPeriodicidade = new ButtonGroup();
 
 	/**
 	 * Create the panel.
@@ -26,7 +29,7 @@ public class CadastroEventoPanel extends JPanel {
 		add(lblDescEvento);
 		
 		tfDescEvento = new JTextField();
-		tfDescEvento.setBounds(12, 27, 403, 20);
+		tfDescEvento.setBounds(12, 27, 454, 20);
 		add(tfDescEvento);
 		tfDescEvento.setColumns(10);
 		
@@ -47,6 +50,25 @@ public class CadastroEventoPanel extends JPanel {
 		tfEncaminharEmail.setBounds(160, 93, 255, 20);
 		add(tfEncaminharEmail);
 		tfEncaminharEmail.setColumns(10);
+		
+		JLabel lblPeriodicidadeDoEvento = new JLabel("Periodicidade do evento");
+		lblPeriodicidadeDoEvento.setBounds(12, 125, 178, 15);
+		add(lblPeriodicidadeDoEvento);
+		
+		JRadioButton rdbUmaVez = new JRadioButton("Uma vez");
+		buttonGroupPeriodicidade.add(rdbUmaVez);
+		rdbUmaVez.setBounds(204, 125, 84, 23);
+		add(rdbUmaVez);
+		
+		JRadioButton rdbSemanal = new JRadioButton("Semanal");
+		buttonGroupPeriodicidade.add(rdbSemanal);
+		rdbSemanal.setBounds(292, 125, 86, 23);
+		add(rdbSemanal);
+		
+		JRadioButton rdbMensal = new JRadioButton("Mensal");
+		buttonGroupPeriodicidade.add(rdbMensal);
+		rdbMensal.setBounds(382, 125, 84, 23);
+		add(rdbMensal);
 
 	}
 }
