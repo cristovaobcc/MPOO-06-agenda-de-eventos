@@ -19,10 +19,11 @@ public class CadastroEventoPanel extends JPanel {
 	private JTextField tfEncaminharEmail;
 	private final ButtonGroup buttonGroupPeriodicidade = new ButtonGroup();
 
+
 	/**
 	 * Create the panel.
 	 */
-	public CadastroEventoPanel() {
+	public CadastroEventoPanel(ListaEventosPanel listaEventosPanel) {
 		setLayout(null);
 		
 		JLabel lblDescEvento = new JLabel("Descrição do Evento");
