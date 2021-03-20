@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
+import java.util.Vector;
+
 import javax.swing.JButton;
 
 /**
@@ -27,6 +29,20 @@ public class ListaEventosPanel extends JPanel {
 		
 		
 
+	}
+	
+	/**
+	 * Devolve um vector com os nomes das colunas.
+	 * @return Vector< String >
+	 */
+	private Vector<String> getNameColumns(){
+		Vector<String> nameColumns = new Vector<String>();
+		nameColumns.add("Data");
+		nameColumns.add("Descrição");
+		nameColumns.add("Periodicidade");
+		nameColumns.add("E-mail");
+		nameColumns.add("Alarme");
+		return nameColumns;
 	}
 
 }
