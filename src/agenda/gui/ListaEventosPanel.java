@@ -3,6 +3,7 @@ package agenda.gui;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import agenda.io.AgendaIO;
 
@@ -31,8 +32,17 @@ public class ListaEventosPanel extends JPanel {
 		table = new JTable(getDataColumns(), getNameColumns());
 		scrollPane.add(table);
 		
+	}
+	
+	
+	/**
+	 * Inclui os valores individualmente numa linha na tabela deste ListaEventosPanel.
+	 * @param valores Object[]
+	 */
+	public void addNewRow(Object[] valores) {
+		DefaultTableModel dtm = (DefaultTableModel) this.table.getModel();
+		dtm.addRow(valores);
 		
-
 	}
 	
 	/**
@@ -66,4 +76,7 @@ public class ListaEventosPanel extends JPanel {
 		
 		return dataColumns;
 	}
+	
+	
+	
 }
