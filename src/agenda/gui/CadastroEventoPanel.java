@@ -2,8 +2,16 @@ package agenda.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import agenda.io.AgendaIO;
+import agenda.utils.AgendaUtils;
+import agenda.utils.PeriodicidadeEnum;
+import agenda.vo.Evento;
+
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
@@ -19,7 +27,10 @@ public class CadastroEventoPanel extends JPanel {
 	private JTextField tfEncaminharEmail;
 	private final ButtonGroup buttonGroupPeriodicidade = new ButtonGroup();
 	private ListaEventosPanel listaEventosPanel;
-
+	private JCheckBox ckbAlarme;
+	private JRadioButton rdbUmaVez;
+	private JRadioButton rdbSemanal;
+	private JRadioButton rdbMensal;
 
 	/**
 	 * Create the panel.
@@ -61,22 +72,22 @@ public class CadastroEventoPanel extends JPanel {
 		lblPeriodicidadeDoEvento.setBounds(12, 125, 178, 15);
 		add(lblPeriodicidadeDoEvento);
 		
-		JRadioButton rdbUmaVez = new JRadioButton("Uma vez");
+		rdbUmaVez = new JRadioButton("Uma vez");
 		buttonGroupPeriodicidade.add(rdbUmaVez);
 		rdbUmaVez.setBounds(204, 125, 84, 23);
 		add(rdbUmaVez);
 		
-		JRadioButton rdbSemanal = new JRadioButton("Semanal");
+		rdbSemanal = new JRadioButton("Semanal");
 		buttonGroupPeriodicidade.add(rdbSemanal);
 		rdbSemanal.setBounds(292, 125, 86, 23);
 		add(rdbSemanal);
 		
-		JRadioButton rdbMensal = new JRadioButton("Mensal");
+		rdbMensal = new JRadioButton("Mensal");
 		buttonGroupPeriodicidade.add(rdbMensal);
 		rdbMensal.setBounds(382, 125, 84, 23);
 		add(rdbMensal);
 		
-		JCheckBox ckbAlarme = new JCheckBox("Alarme");
+		ckbAlarme = new JCheckBox("Alarme");
 		ckbAlarme.setBounds(8, 163, 129, 23);
 		add(ckbAlarme);
 		
@@ -88,5 +99,48 @@ public class CadastroEventoPanel extends JPanel {
 		btnLimpar.setBounds(318, 162, 117, 25);
 		add(btnLimpar);
 
+	}
+	
+	
+	private void chamaCadastroEvento() {
+		
+		AgendaIO agendaIO = new AgendaIO();
+		Evento evento = new Evento();
+		
+		Object[] novaLinha = new Object[5];
+		
+		String dataString = tfDataDoEvento.getText();
+		evento.setDataEvento(AgendaUtils.getDateFromString(dataString));
+		evento.setDescEvento(tfDescEvento.getText());
+		evento.setAlarme(ckbAlarme.isSelected() ? 1 : 0);
+		evento.setEmailEncaminhar(tfEncaminharEmail.getText());
+		
+		
+		novaLinha[0] = tfDataDoEvento.getText();
+		novaLinha[1] = tfDescEvento.getText();
+		novaLinha[3] = tfEncaminharEmail.getText();
+		novaLinha[4] = ckbAlarme.isSelected() ? "LIGADO" : "DESLIGADO";
+		
+		if(rdbUmaVez.isSelected()) {
+			evento.setPeriodicidade(PeriodicidadeEnum.UNICO);
+			novaLinha[2] = PeriodicidadeEnum.UNICO;
+		} else if (rdbSemanal.isSelected()) {
+			evento.setPeriodicidade(PeriodicidadeEnum.SEMANAL);
+			novaLinha[2] = PeriodicidadeEnum.SEMANAL;
+		} else {
+			evento.setPeriodicidade(PeriodicidadeEnum.MENSAL);
+			novaLinha[2] = PeriodicidadeEnum.MENSAL;
+		}
+		
+		try {
+			agendaIO.gravarEvento(evento);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERRO", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+			
+		}
+		
+		listaEventosPanel.addNewRow(novaLinha);
+		limpaCampos();
+		
 	}
 }
