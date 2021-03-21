@@ -1,0 +1,2 @@
+11/12/2011;Teste;UNICO;a@a.com;1 
+12/01/2022;teste;SEMANAL;a@b.com;1 
