@@ -5,6 +5,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 
 import agenda.io.AgendaIO;
@@ -31,6 +34,8 @@ public class CadastroEventoPanel extends JPanel {
 	private JRadioButton rdbUmaVez;
 	private JRadioButton rdbSemanal;
 	private JRadioButton rdbMensal;
+	private JButton btnSalvar;
+	private JButton btnLimpar;
 
 	/**
 	 * Create the panel.
@@ -91,14 +96,40 @@ public class CadastroEventoPanel extends JPanel {
 		ckbAlarme.setBounds(8, 163, 129, 23);
 		add(ckbAlarme);
 		
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(160, 162, 117, 25);
 		add(btnSalvar);
 		
-		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar = new JButton("Limpar");
 		btnLimpar.setBounds(318, 162, 117, 25);
 		add(btnLimpar);
+		
+		this.cadastraListeners();
 
+	}
+	
+	/**
+	 * Cadastra listeners para os botões salvar e limpar.
+	 */
+	private void cadastraListeners() {
+		this.btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chamaCadastroEvento();
+				
+			}
+		});
+		
+		
+		this.btnLimpar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				limparCampos();
+				
+			}
+		});
 	}
 	
 	
