@@ -3,10 +3,14 @@ package agenda.gui;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import agenda.io.AgendaIO;
+
 import java.awt.BorderLayout;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  * Lista os eventos cadastrados no sistema.
@@ -24,7 +28,7 @@ public class ListaEventosPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		table = new JTable();
+		table = new JTable(getDataColumns(), getNameColumns());
 		scrollPane.add(table);
 		
 		
@@ -44,5 +48,22 @@ public class ListaEventosPanel extends JPanel {
 		nameColumns.add("Alarme");
 		return nameColumns;
 	}
-
+	
+	/**
+	 * Devolve os dados de eventos em arquivo txt.
+	 * @return Vector< {@link Vector}< Object> >
+	 */
+	private Vector<Vector<Object>> getDataColumns(){
+		AgendaIO agendaIO = new AgendaIO();
+		Vector<Vector<Object>> dataColumns = null;
+		
+		try {
+			dataColumns = agendaIO.getEventos();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro", e.getMessage(),
+			JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return dataColumns;
+	}
 }
