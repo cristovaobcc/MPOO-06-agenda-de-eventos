@@ -26,11 +26,11 @@ public class ListaEventosPanel extends JPanel {
 	public ListaEventosPanel() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane, BorderLayout.CENTER);
-		
 		table = new JTable(getDataColumns(), getNameColumns());
-		scrollPane.add(table);
+		JScrollPane scrollPane = new JScrollPane(table);
+		//scrollPane.add(table);
+		
+		add(scrollPane, BorderLayout.CENTER);
 		
 	}
 	
@@ -42,7 +42,6 @@ public class ListaEventosPanel extends JPanel {
 	public void addNewRow(Object[] valores) {
 		DefaultTableModel dtm = (DefaultTableModel) this.table.getModel();
 		dtm.addRow(valores);
-		
 	}
 	
 	/**
