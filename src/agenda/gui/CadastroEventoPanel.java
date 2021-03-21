@@ -140,7 +140,18 @@ public class CadastroEventoPanel extends JPanel {
 		}
 		
 		listaEventosPanel.addNewRow(novaLinha);
-		limpaCampos();
+		limparCampos();
 		
+	}
+	
+	/**
+	 * Limpa os campos de CadastroEventoPanel.
+	 */
+	private void limparCampos() {
+		tfDataDoEvento.setText("");
+		tfDescEvento.setText("");
+		ckbAlarme.setSelected(false);
+		tfEncaminharEmail.setText("");
+		rdbUmaVez.setSelected(true);
 	}
 }
